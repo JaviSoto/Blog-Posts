@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 31</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<div class="content-wrapper">
+  <section class="section">
+    <p>And with that, we turned our <code>Result</code> type into a Monad! <strong>A Monad is a type of Functor. A type which, along with <code>map</code>, implements a <code>flatMap</code> function</strong> (<em>sometimes also known as <code>bind</code></em>) with a signature similar to the one we&#39;ve seen here. Container types like the ones we presented here are usually Monads, but you will also see that pattern for example in types that encapsulate deferred computation, like <code>Signal</code> or <code>Future</code>.</p>
+<p>The words <strong>Functor</strong> and <strong>Monad</strong> come from category theory, with which I&#39;m not familiar at all. However, there&#39;s value in having names to refer to these concepts. Computer scientists love to come up with names for things. But it&#39;s those names that allow us to refer to abstract concepts (<em>some extremely abstract, like Monad</em>), and immediately know what we mean (of course, assuming we have the previous knowledge of their meaning). We get the same benefit out of sharing names for things like design patterns (decorator, factory...).</p>
+<p>It took me a very long time to assimilate all the ideas in this blog post, so if you&#39;re not familiar with any of this I don&#39;t expect you to finish reading this and immediately understand it.
+However, I encourage you to create an Xcode playground and try to come up with the implementation for <code>map</code>, <code>flatten</code> and <code>flatMap</code> for <code>Result</code> or a similar container type (perhaps try with <code>Optional</code> or even <code>Array</code>), and use some sample values to play with them.</p>
+<p>And next time you hear the words Functor or Monad, don&#39;t be scared :) They&#39;re simply design patterns to describe common operations that we can perform on different types.</p>
+
+  </section>
+</div>
+</body>
+</html>

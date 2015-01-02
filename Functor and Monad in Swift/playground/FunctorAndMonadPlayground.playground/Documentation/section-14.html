@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 15</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<div class="content-wrapper">
+  <section class="section">
+    <p>Easy enough. This function will return <em>either</em> an <code>NSData</code> object, or an <code>NSError</code> in case the file can&#39;t be read.</p>
+<p>Like we did before, we may want to apply some transformation to the read value. However, like in the case before, we would need to check that we have a value every step of the way, which may result in ugly nested <code>if let</code>s or <code>switch</code> statements. Let&#39;s leverage <code>map</code> like we did before. In this case, we will only want to apply such transformation if we have a value. If we don&#39;t, we can simply pass the same error through.</p>
+<p>How would <code>Result.map</code> be implemented? Let&#39;s take a look:</p>
+
+  </section>
+</div>
+</body>
+</html>

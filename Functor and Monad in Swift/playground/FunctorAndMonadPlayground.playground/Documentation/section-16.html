@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Section 17</title>
+  <meta id="xcode-display" name="xcode-display" content="render">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<div class="content-wrapper">
+  <section class="section">
+    <p>Again, the transformation function <code>f</code> takes a value of type <code>T</code> (in the above example, <code>NSData</code>) and returns a value of type <code>U</code> (<code>String</code>). After calling <code>map</code>, we&#39;ll get a <code>Result&lt;U&gt;</code> (<code>Result&lt;String&gt;</code>) from an initial <code>Result&lt;T&gt;</code> (<code>Result&lt;NSData&gt;</code>).
+We only call <code>f</code> whenever we start with a value, and we simply return another <code>Result</code> with the same error otherwise.</p>
+<p>Imagine that we wanted to read a file with string contents. We would get an <code>NSData</code>, that then we need to transform into a <code>String</code>. Then say that we want to turn it into uppercase:</p>
+<pre><code>NSData -&gt; String -&gt; String
+</code></pre><p>We can do this with a series of <code>map</code> transformations:</p>
+
+  </section>
+</div>
+</body>
+</html>

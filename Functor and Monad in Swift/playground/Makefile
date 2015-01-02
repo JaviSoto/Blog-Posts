@@ -1,0 +1,2 @@
+playground:
+	playground FunctorAndMonadPlayground.md .
