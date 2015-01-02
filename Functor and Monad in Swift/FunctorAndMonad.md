@@ -229,3 +229,5 @@ It took me a very long time to assimilate all the ideas in this blog post, so if
 However, I encourage you to create an Xcode playground and try to come up with the implementation for `map`, `flatten` and `flatMap` for `Result` or a similar container type (perhaps try with `Optional` or even `Array`), and use some sample values to play with them.
 
 And next time you hear the words Functor or Monad, don't be scared :) They're simply design patterns to describe common operations that we can perform on different types.
+
+*Open source version of the article, where you can create an issue to ask a question or open pull requests: [https://github.com/JaviSoto/Blog-Posts/blob/master/Functor%20and%20Monad%20in%20Swift/FunctorAndMonad.md](https://github.com/JaviSoto/Blog-Posts/blob/master/Functor%20and%20Monad%20in%20Swift/FunctorAndMonad.md)*
