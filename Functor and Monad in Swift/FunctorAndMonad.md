@@ -21,7 +21,7 @@ The benefit of this pattern is that we can very clearly express the transformati
 ```swift
 var doubledImperative: [Int] = []
 for number in numbers {
-  doubledImperative.append(number * 2)
+    doubledImperative.append(number * 2)
 }
 // doubledImperative: 2, 4, 6
 ```
@@ -92,14 +92,14 @@ To see an example, let's implement a function that reads the contents of a file 
 
 ```swift
 func dataWithContentsOfFile(file: String, encoding: NSStringEncoding) -> Result<NSData> {
-  var error: NSError?
+    var error: NSError?
 
-  if let data = NSData(contentsOfFile: file, options: .allZeros, error: &error) {
-    return .Value(Box(data))
-  }
-  else {
-    return .Error(error!)
-  }
+    if let data = NSData(contentsOfFile: file, options: .allZeros, error: &error) {
+        return .Value(Box(data))
+    }
+    else {
+        return .Error(error!)
+    }
 }
 ```
 
@@ -131,10 +131,10 @@ let data: Result<NSData> = dataWithContentsOfFile(path, NSUTF8StringEncoding)
 var stringContents: String?
 
 switch data {
-  case let .Value(value):
-    stringContents = NSString(data: value.unbox, encoding: NSUTF8StringEncoding)
-  case let .Error(error):
-    break
+    case let .Value(value):
+        stringContents = NSString(data: value.unbox, encoding: NSUTF8StringEncoding)
+    case let .Error(error):
+        break
 }
 
 let uppercaseContents: String? = stringContents?.uppercaseString
@@ -144,14 +144,14 @@ How would `Result.map` be implemented? Let's take a look:
 
 ```swift
 extension Result {
-  func map<U>(f: T -> U) -> Result<U> {
-      switch self {
-      case let .Value(value):
-          return Result<U>.Value(Box(f(value.unbox)))
-      case let .Error(error):
-          return Result<U>.Error(error)
-      }
-  }
+    func map<U>(f: T -> U) -> Result<U> {
+        switch self {
+            case let .Value(value):
+                return Result<U>.Value(Box(f(value.unbox)))
+            case let .Error(error):
+                return Result<U>.Error(error)
+        }
+    }
 }
 ```
 
@@ -183,14 +183,14 @@ Notice the nested `Result`s in the return type. This is probably not what we'll 
 
 ```swift
 extension Result {
-  static func flatten<T>(result: Result<Result<T>>) -> Result<T> {
-      switch result {
-      case let .Value(innerResult):
-          return innerResult.unbox
-      case let .Error(error):
-          return Result<T>.Error(error)
-      }
-  }
+    static func flatten<T>(result: Result<Result<T>>) -> Result<T> {
+        switch result {
+            case let .Value(innerResult):
+                return innerResult.unbox
+            case let .Error(error):
+                return Result<T>.Error(error)
+        }
+    }
 }
 ```
 
@@ -202,12 +202,12 @@ With this, we can implement our `Result<NSData> -> Result<String>` transformatio
 
 ```swift
 let stringResult = Result<String>.flatten(data.map { (data: NSData) -> (Result<String>) in
-  if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
-    return Result.Value(Box(string))
-  }
-  else {
-    return Result<String>.Error(NSError(domain: "com.javisoto.es.error_domain", code: JSErrorCodeInvalidStringData, userInfo: nil))
-  }
+    if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
+        return Result.Value(Box(string))
+    }
+    else {
+        return Result<String>.Error(NSError(domain: "com.javisoto.es.error_domain", code: JSErrorCodeInvalidStringData, userInfo: nil))
+    }
 })
 ```
 
@@ -215,9 +215,9 @@ This is so common, that you will find this defined in many places as `flatMap` o
 
 ```swift
 extension Result {
-  func flatMap<U>(f: T -> Result<U>) -> Result<U> {
-      return Result.flatten(map(f))
-  }
+    func flatMap<U>(f: T -> Result<U>) -> Result<U> {
+        return Result.flatten(map(f))
+    }
 }
 ```
 
