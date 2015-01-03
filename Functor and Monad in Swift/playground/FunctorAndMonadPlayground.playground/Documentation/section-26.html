@@ -12,7 +12,7 @@
 <div class="content-wrapper">
   <section class="section">
     <p>This <code>flatten</code> function takes a nested <code>Result</code> with a <code>T</code> inside, and return a single <code>Result&lt;T&gt;</code> simply by extracting the inner object inside the <code>Value</code>, or the <code>Error</code>.</p>
-<p>A <code>flatten</code> function can be found in other contexts. For example, one can <code>flatten</code> an array of arrays into a contigous, one-dimensional array.</p>
+<p>A <code>flatten</code> function can be found in other contexts. For example, one can <code>flatten</code> an array of arrays into a contiguous, one-dimensional array.</p>
 <p>With this, we can implement our <code>Result&lt;NSData&gt; -&gt; Result&lt;String&gt;</code> transformation by combining <code>map</code> and <code>flatten</code>:</p>
 
   </section>

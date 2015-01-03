@@ -211,7 +211,7 @@ extension Result {
 
 This `flatten` function takes a nested `Result` with a `T` inside, and return a single `Result<T>` simply by extracting the inner object inside the `Value`, or the `Error`.
 
-A `flatten` function can be found in other contexts. For example, one can `flatten` an array of arrays into a contigous, one-dimensional array.
+A `flatten` function can be found in other contexts. For example, one can `flatten` an array of arrays into a contiguous, one-dimensional array.
 
 With this, we can implement our `Result<NSData> -> Result<String>` transformation by combining `map` and `flatten`:
 
