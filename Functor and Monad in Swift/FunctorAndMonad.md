@@ -113,7 +113,7 @@ Imagine that we wanted to read a file with string contents. We would get an `NSD
 NSData -> String -> String
 ```
 
-We can do this with a series of `map` transformations:
+We can do this with a series of `map` transformations (*we'll discuss the implementation of `map` later*):
 
 ```swift
 let data: Result<NSData> = dataWithContentsOfFile(path, NSUTF8StringEncoding)
