@@ -68,21 +68,11 @@ Let's implement our own container type. A `Result` enum is a pattern that you wi
 We could define it like this:
 
 ```swift
-class Box<T> {
-    let unbox: T
-
-    init(_ value: T) {
-        self.unbox = value
-    }
-}
-
 enum Result<T> {
-    case Value(Box<T>)
+    case Value(T)
     case Error(NSError)
 }
 ```
-
-*The `Box` class is required to work around a current Swift limitation (`unimplemented IR generation feature non-fixed multi-payload enum layout`)*
 
 This is an implementation of a type known as `Either` in some programming languages. Only in this case we're forcing one of the types to be an `NSError` instead of being generic, since we're going to use it to report the result of an operation.
 
@@ -95,7 +85,7 @@ func dataWithContentsOfFile(file: String, encoding: NSStringEncoding) -> Result<
     var error: NSError?
 
     if let data = NSData(contentsOfFile: file, options: .allZeros, error: &error) {
-        return .Value(Box(data))
+        return .Value(data)
     }
     else {
         return .Error(error!)
@@ -132,7 +122,7 @@ var stringContents: String?
 
 switch data {
     case let .Value(value):
-        stringContents = NSString(data: value.unbox, encoding: NSUTF8StringEncoding)
+        stringContents = NSString(data: value, encoding: NSUTF8StringEncoding)
     case let .Error(error):
         break
 }
@@ -147,7 +137,7 @@ extension Result {
     func map<U>(f: T -> U) -> Result<U> {
         switch self {
             case let .Value(value):
-                return Result<U>.Value(Box(f(value.unbox)))
+                return Result<U>.Value(f(value))
             case let .Error(error):
                 return Result<U>.Error(error)
         }
@@ -186,7 +176,7 @@ extension Result {
     static func flatten<T>(result: Result<Result<T>>) -> Result<T> {
         switch result {
             case let .Value(innerResult):
-                return innerResult.unbox
+                return innerResult
             case let .Error(error):
                 return Result<T>.Error(error)
         }
@@ -203,7 +193,7 @@ With this, we can implement our `Result<NSData> -> Result<String>` transformatio
 ```swift
 let stringResult = Result<String>.flatten(data.map { (data: NSData) -> (Result<String>) in
     if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
-        return Result.Value(Box(string))
+        return Result.Value(string)
     }
     else {
         return Result<String>.Error(NSError(domain: "com.javisoto.es.error_domain", code: JSErrorCodeInvalidStringData, userInfo: nil))
